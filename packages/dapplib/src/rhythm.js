@@ -60,7 +60,7 @@ const dappConfigFile = path.join(__dirname, 'dapp-config.json');
 
     // Unpopulated dappConfig with service info only
     dappConfig = {
-      httpUri,
+      httpUri: "https://jsheely-cli-test7-4g54r9g37jgg-5000.githubpreview.dev",
       contracts: chainContracts,
       accounts: [],
       serviceWallet: serviceWallet,

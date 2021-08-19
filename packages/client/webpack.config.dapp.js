@@ -11,7 +11,8 @@ module.exports = (env, argv) => {
       ),
 
       filename: "bundle.js",
-      publicPath: "http://localhost:5001/",
+      publicPath:
+        "https://jsheely-cli-test7-4g54r9g37jgg-5001.githubpreview.dev/",
     },
     module: {
       rules: [

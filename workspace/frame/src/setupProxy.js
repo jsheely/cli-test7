@@ -11,7 +11,6 @@ module.exports = function (app) {
       changeOrigin: true,
       followRedirects: true,
       onProxyReq: (proxyReq, req, res) => {
-        console.log('request')
       },
       selfHandleResponse: true,
       onProxyRes: responseInterceptor(
@@ -27,5 +26,12 @@ module.exports = function (app) {
       target: 'http://localhost:5002',
       changeOrigin: true,
     }),
-  )
+  ),
+    app.use(
+      '/flow.access.AccessAPI',
+      createProxyMiddleware({
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      }),
+    )
 }
