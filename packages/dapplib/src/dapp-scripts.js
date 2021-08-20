@@ -7,6 +7,23 @@ const fcl = require("@onflow/fcl");
 
 module.exports = class DappScripts {
 
+	static kibble_get_supply() {
+		return fcl.script`
+				import Kibble from 0x01cf0e2f2f715450
+				
+				// This script returns the total amount of Kibble currently in existence.
+				
+				pub fun main(): UFix64 {
+				
+				    let supply = Kibble.totalSupply
+				
+				    log(supply)
+				
+				    return supply
+				}
+		`;
+	}
+
 	static kibble_get_balance() {
 		return fcl.script`
 				import Kibble from 0x01cf0e2f2f715450
@@ -24,23 +41,6 @@ module.exports = class DappScripts {
 				    return vaultRef.balance
 				}
 				
-		`;
-	}
-
-	static kibble_get_supply() {
-		return fcl.script`
-				import Kibble from 0x01cf0e2f2f715450
-				
-				// This script returns the total amount of Kibble currently in existence.
-				
-				pub fun main(): UFix64 {
-				
-				    let supply = Kibble.totalSupply
-				
-				    log(supply)
-				
-				    return supply
-				}
 		`;
 	}
 

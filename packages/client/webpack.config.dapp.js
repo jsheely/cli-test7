@@ -11,8 +11,9 @@ module.exports = (env, argv) => {
       ),
 
       filename: "bundle.js",
-      publicPath:
-        "https://jsheely-cli-test7-4g54r9g37jgg-5001.githubpreview.dev/",
+      publicPath: process.env.CODESPACES
+        ? `https://${process.env.CODESPACE_NAME}-5001.githubpreview.dev/`
+        : "/",
     },
     module: {
       rules: [
