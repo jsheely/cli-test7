@@ -35,8 +35,5 @@
     "walkdir": "0.4.1",
     "watch": "^1.0.2"
   },
-  "private": true,
-  "devDependencies": {
-    "@decentology/dappstarter-cli-proxy": "^1.0.2"
-  }
+  "private": true
 }
