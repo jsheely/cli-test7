@@ -17,8 +17,8 @@
     "server": "lerna run dev --scope=@decentology/dappstarter-server --stream",
     "test": "lerna run test $npm_config_script --scope=@decentology/dappstarter-dapplib --stream",
     "dev": "npm start",
-    "predevelop": "npx dappstarter-cli-download",
-    "develop": "dappstarter --env=staging develop"
+    "predevelop": "npx @decentology/dappstarter-cli-proxy",
+    "develop": "dappstarter develop"
   },
   "dependencies": {
     "blakejs": "1.1.0",
@@ -37,6 +37,6 @@
   },
   "private": true,
   "devDependencies": {
-    "@decentology/dappstarter-cli-download": "https://github.com/decentology/dappstarter-cli-download.git"
+    "@decentology/dappstarter-cli-proxy": "^1.0.2"
   }
 }
