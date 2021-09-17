@@ -1,21 +1,21 @@
 import { LitElement, html, customElement, property } from "lit-element";
-@customElement('top-navigation')
+@customElement("top-navigation")
 export default class TopNavigation extends LitElement {
   @property()
   collapse;
-  
+
   createRenderRoot() {
     return this;
   }
 
   constructor(args) {
     super(args);
-    let page = localStorage.getItem('dappstarter-page');
-    if (page && page.includes('-')) {
-      page = 'harness';
+    let page = localStorage.getItem("dappstarter-page");
+    if (page && page.includes("-")) {
+      page = "harness";
     }
     setTimeout(() => {
-      this.setPageLoader(page ? page : 'dapp');
+      this.setPageLoader(page ? page : "dapp");
     }, 0);
   }
 
@@ -24,30 +24,30 @@ export default class TopNavigation extends LitElement {
       {
         name: "dapp",
         title: "Home",
-        route: "/"
+        route: "/client",
       },
       {
         name: "harness",
-        title: "UI Harness",
-        route: "/harness"
-      }      
+        title: "UI Harness 2",
+        route: "/client/harness",
+      },
     ];
 
     // Add Customizer menu only if there are modules
-    let customizableModules = []; 
+    let customizableModules = [];
     if (customizableModules.length > 0) {
       staticPages.push({
         name: "customizer",
         title: "Customizer",
-        route: "/customizer"
+        route: "/customizer",
       });
     }
     return staticPages;
   }
 
-  handleClick = e => {
+  handleClick = (e) => {
     e.preventDefault();
-    localStorage.setItem('dappstarter-page', e.target.dataset.link);
+    localStorage.setItem("dappstarter-page", e.target.dataset.link);
     this.setPageLoader(e.target.dataset.link);
   };
 
@@ -58,7 +58,7 @@ export default class TopNavigation extends LitElement {
   }
 
   render() {
-    this.classList.add('z-10', 'fixed');
+    this.classList.add("z-10", "fixed");
     let content = html`
       <nav
         x-data="{ open: false }"
@@ -70,7 +70,7 @@ export default class TopNavigation extends LitElement {
             <div class="flex items-center">
               <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline">
-                ${this.getPages().map(x => {
+                ${this.getPages().map((x) => {
                   return html`
                     <a
                       href="#"
@@ -96,7 +96,3 @@ export default class TopNavigation extends LitElement {
     return content;
   }
 }
-
-
-
-

@@ -1,17 +1,18 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
+const EnvironmentPlugin = require("webpack/lib/EnvironmentPlugin");
 module.exports = (env, argv) => {
   return {
     entry: ["@babel/polyfill", path.join(__dirname, "src")],
+    stats: "minimal",
     output: {
       path: path.join(
         __dirname,
-        argv.mode === "development" ? "dist/dapp" : "prod/dapp"
+        argv.mode === "development" ? "client/client" : "prod/dapp"
       ),
-
-      filename: "bundle.js",
-      publicPath: "http://localhost:5001/",
+      // path: path.resolve(__dirname,'client'),
+      filename: "[name].[hash].js",
+      publicPath: "/client/",
     },
     module: {
       rules: [
@@ -68,6 +69,9 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: path.join(__dirname, "src/index.html"),
       }),
+      new EnvironmentPlugin({
+        DAPPSTARTER_BLOCKCHAIN_HOST: process.env.DAPPSTARTER_BLOCKCHAIN_HOST,
+      }),
       // new MiniCssExtractPlugin()
     ],
     resolve: {
@@ -75,12 +79,13 @@ module.exports = (env, argv) => {
     },
     devtool: "source-map",
     devServer: {
-      contentBase: path.join(__dirname, "dapp"),
       port: 5001,
       host: "0.0.0.0",
-      disableHostCheck: true,
-      stats: "minimal",
-      historyApiFallback: true,
+      allowedHosts: "all",
+      static: true,
+      historyApiFallback: {
+        index: "/client/",
+      },
       open: false,
       headers: {
         "Access-Control-Allow-Origin": "*",
