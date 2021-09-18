@@ -70,7 +70,8 @@ module.exports = (env, argv) => {
         template: path.join(__dirname, "src/index.html"),
       }),
       new EnvironmentPlugin({
-        DAPPSTARTER_BLOCKCHAIN_HOST: process.env.DAPPSTARTER_BLOCKCHAIN_HOST,
+        DAPPSTARTER_BLOCKCHAIN_HOST:
+          process.env.DAPPSTARTER_BLOCKCHAIN_HOST || "",
       }),
       // new MiniCssExtractPlugin()
     ],
